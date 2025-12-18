@@ -165,28 +165,6 @@ pip install torch torchvision matplotlib scikit-learn numpy
 
 ---
 
-## Repository Structure
-
-```
-.
-├── model_cnn.ipynb        # Model A: Baseline CNN
-├── model_deeper.ipynb     # Model B: Deeper CNN + Regularization
-├── splits.npz             # Saved train/val/test indices
-└── README.md
-```
-
----
-
-## Evaluation Metrics
-
-* Training and validation loss
-* Training and validation accuracy
-* Test accuracy
-* Confusion matrix
-* Precision, recall, and F1-score per class
-
----
-
 ## Key Takeaways
 
 * Deeper architectures with regularization improve generalization.
