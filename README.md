@@ -27,6 +27,40 @@ The train/validation/test indices are saved once (`splits.npz`) and reused by bo
 
 ---
 
+## Dataset Download & Folder Workflow (Required)
+
+The dataset must be downloaded manually from **Kaggle**.
+
+When downloaded from Kaggle, the file will be named:
+
+```
+archive.zip
+```
+
+### Step 1: Extract the Kaggle Download
+
+Unzip `archive.zip`. Inside, you will see:
+
+```
+archive.zip
+├── data/
+└── natural_images/
+    ├── airplane/
+    ├── car/
+    ├── cat/
+    ├── dog/
+    ├── flower/
+    ├── fruit/
+    ├── motorbike/
+    └── person/
+```
+
+> **Important:**
+> The project expects the folder named **`natural_images/`**.
+> The `data/` folder is **not used**.
+
+---
+
 ## Models
 
 ### Model A — Baseline CNN
@@ -35,7 +69,7 @@ The train/validation/test indices are saved once (`splits.npz`) and reused by bo
 * ReLU activations
 * Max pooling
 * **Global Average Pooling (GAP)** instead of large fully connected layers
-* Lightweight and efficient
+* Lightweight and computationally efficient
 
 ### Model B — Deeper CNN with Regularization
 
@@ -60,8 +94,8 @@ To ensure the project is **professor-runnable on typical hardware**, the followi
 
 Typical runtime on a laptop CPU:
 
-* **Model A:** ~10–20 minutes
-* **Model B:** ~20–40 minutes
+* **Model A:** ~30 minutes
+* **Model B:** ~8+ hours
 
 ---
 
@@ -76,7 +110,7 @@ For fastest and most reliable execution, **Google Colab with GPU is strongly rec
 
 ---
 
-## Recommended: Google Colab with T4 GPU 
+## Recommended: Google Colab with T4 GPU
 
 Expected runtime on Colab (T4 GPU):
 
@@ -104,16 +138,27 @@ Using Colab provides:
 
 ### Step-by-Step Colab Instructions
 
-1. Open **Google Colab** and upload both notebooks.
-2. Go to **Runtime → Change runtime type** and select **GPU (T4)**.
-3. Upload the dataset **as a zip file** named:
+1. After extracting `archive.zip` locally, **zip only the `natural_images/` folder**:
 
    ```
    natural_images.zip
    ```
 
-   into the **`/content/sample_data/`** directory.
-4. Open a Colab terminal and run:
+2. Open **Google Colab** and upload:
+
+   * `model_cnn.ipynb`
+   * `model_deeper.ipynb`
+   * `natural_images.zip`
+   * `splits.npz`
+
+3. Go to **Runtime → Change runtime type** and select **GPU (T4)**.
+
+4. Ensure files are placed as follows:
+
+   * `natural_images.zip` → `/content/sample_data/`
+   * `splits.npz` → `/content/splits.npz`
+
+5. Open a Colab terminal and run:
 
    ```bash
    cd /content/sample_data
@@ -125,13 +170,13 @@ Using Colab provides:
    ```
    /content/sample_data/natural_images/
    ```
-5. Upload `splits.npz` into the **`/content/`** directory.
+
 6. In both notebooks, set:
 
    ```python
    DATA_DIR = "/content/sample_data/natural_images"
-   SPLIT_FILE = "/content/splits.npz"
    ```
+
 7. Run the notebooks **top-to-bottom**.
 
 No additional installation steps are required — **Colab handles all dependencies automatically**.
@@ -150,18 +195,51 @@ pip install torch torchvision matplotlib scikit-learn numpy
 
 > Note: Without GPU support, training will take significantly longer than on Colab.
 
-### Steps
+---
 
-1. Download and extract the Natural Images dataset.
-2. Update dataset path in both notebooks:
+### Local Execution Steps
+
+1. After extracting `archive.zip`, copy the **entire `natural_images/` folder** into your project directory:
+
+   ```
+   project_root/
+   ├── model_cnn.ipynb
+   ├── model_deeper.ipynb
+   ├── splits.npz
+   └── natural_images/
+   ```
+
+2. In both notebooks, set:
 
    ```python
-   DATA_DIR = "/path/to/natural_images"
+   DATA_DIR = "Path/to/natural_images"
+   SPLIT_FILE = "splits.npz"
    ```
-3. Run notebooks **top-to-bottom**:
 
-   * `model_cnn.ipynb`
-   * `model_deeper.ipynb`
+3. Run the notebooks **top-to-bottom**.
+
+---
+
+## Expected Folder Structure Summary
+
+### VS Code
+
+```
+project_root/
+├── model_cnn.ipynb
+├── model_deeper.ipynb
+├── splits.npz
+└── natural_images/
+```
+
+### Google Colab
+
+```
+/content/
+├── splits.npz
+└── sample_data/
+    └── natural_images/
+```
 
 ---
 
