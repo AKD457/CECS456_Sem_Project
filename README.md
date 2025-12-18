@@ -65,7 +65,7 @@ Typical runtime on a laptop CPU:
 
 ---
 
-## ⚠️ CPU vs GPU Runtime Warning
+## CPU vs GPU Runtime Warning
 
 This project **can run on CPU**, but training **will be significantly slower**.
 
@@ -76,7 +76,7 @@ For fastest and most reliable execution, **Google Colab with GPU is strongly rec
 
 ---
 
-## Recommended: Google Colab with T4 GPU 🚀
+## Recommended: Google Colab with T4 GPU 
 
 Expected runtime on Colab (T4 GPU):
 
